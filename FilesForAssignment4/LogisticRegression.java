@@ -36,6 +36,8 @@ public class LogisticRegression {
         /** TODO: Helper function for prediction **/
         /** Takes a test instance as input and outputs the probability of the label being 1 **/
         /** This function should call sigmoid() **/
+        /** This does cross product of features and weights to create a value to plug into sigmoid **/
+        /** to predict 1 or 0 (training data) **/
         private double probPred1(double[] x) {
             return 0;
         }
@@ -43,6 +45,7 @@ public class LogisticRegression {
         /** TODO: The prediction function **/
         /** Takes a test instance as input and outputs the predicted label **/
         /** This function should call probPred1() **/
+        /** Takes testing data and predicts after the training data creates the weights. **/
         public int predict(double[] x) {
             return 0;
         }
