@@ -40,6 +40,7 @@ public class LogisticRegression {
             double normVal = Math.sqrt(sum);
 
             return normVal;
+
         }
 
         /** TODO: Implement the sigmoid function **/
@@ -54,7 +55,6 @@ public class LogisticRegression {
         /** This does cross product of features and weights to create a value to plug into sigmoid **/
         /** to predict 1 or 0 (training data) **/
         private double probPred1(double[] x) {
-<<<<<<< HEAD
            //no bias term (other lab)
            // from i -> d, summation(wi * Xi)
            //Classification Rule
@@ -62,20 +62,14 @@ public class LogisticRegression {
            double probPredVal = 0.0;
            double crossProdVal = 0.0;
            for(int i = 0; i < weights.length; i++){
-             crossProdVal = weights[i] * x[i];
+             crossProdVal += weights[i] * x[i];
            }
-           
+
            probPredVal = sigmoid(crossProdVal);
            return probPredVal;
-=======
-            double sum = 0;
-            for(int i = 0; i < x.length; i++){
-                sum += x[i] * weights[i];
-            }
-            double prediction = sigmoid(sum);
-            return prediction;
->>>>>>> db037331f2303a2e0e95024d2c8ce86fedcd3fab
+
         }
+
 
         /** TODO: The prediction function **/
         /** Takes a test instance as input and outputs the predicted label **/
