@@ -20,11 +20,13 @@ public class LogisticRegression {
         private int ITERATIONS = 200;
 
         /** TODO: Constructor initializes the weight vector. Initialize it by setting it to the 0 vector. **/
+        /** DONE **/
         public LogisticRegression(int n) { // n is the number of weights to be learned
           weights = new double[n];
         }
 
         /** TODO: Implement the function that returns the L2 norm of the weight vector **/
+        /** DONE **/
         private double weightsL2Norm(){
             /** weights array. **/
             /** square each value in the vector **/
@@ -33,9 +35,7 @@ public class LogisticRegression {
 
             double sum = 0.0;
             for(int i=0; i < weights.length; i++){
-              double weightVal = weights[i];
-              weightVal = Math.pow(weightVal, 2);
-              sum += weightVal;
+              sum += Math.pow(weights[i] , 2);
             }
             double normVal = Math.sqrt(sum);
 
@@ -43,6 +43,7 @@ public class LogisticRegression {
         }
 
         /** TODO: Implement the sigmoid function **/
+        /** DONE **/
         private static double sigmoid(double z) {
             return (1 / (1 + Math.pow(Math.E, (-1 * z))));
         }
@@ -53,7 +54,18 @@ public class LogisticRegression {
         /** This does cross product of features and weights to create a value to plug into sigmoid **/
         /** to predict 1 or 0 (training data) **/
         private double probPred1(double[] x) {
-            return 0;
+           //no bias term (other lab)
+           // from i -> d, summation(wi * Xi)
+           //Classification Rule
+
+           double probPredVal = 0.0;
+           double crossProdVal = 0.0;
+           for(int i = 0; i < weights.length; i++){
+             crossProdVal = weights[i] * x[i];
+           }
+           
+           probPredVal = sigmoid(crossProdVal);
+           return probPredVal;
         }
 
         /** TODO: The prediction function **/
