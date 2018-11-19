@@ -25,7 +25,20 @@ public class LogisticRegression {
 
         /** TODO: Implement the function that returns the L2 norm of the weight vector **/
         private double weightsL2Norm(){
-            return 0;
+            /** weights array. **/
+            /** square each value in the vector **/
+            /** sum them together */
+            /** sqrt the the sum **/
+
+            double sum = 0.0;
+            for(i=0; i < weights.length; i++){
+              double weightVal = weights[i];
+              weightVal = Math.pow(weightVal, 2);
+              sum += weightVal;
+            }
+            double normVal = Math.sqrt(sum);
+
+            return normVal;
         }
 
         /** TODO: Implement the sigmoid function **/
@@ -88,6 +101,9 @@ public class LogisticRegression {
 
             /** TODO: Constructor for initializing the Instance object **/
             public LRInstance(int label, double[] x) {
+
+               this.label = label;
+               this.x = x;
             }
         }
 
