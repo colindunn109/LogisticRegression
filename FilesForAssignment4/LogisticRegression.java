@@ -31,7 +31,7 @@ public class LogisticRegression {
             /** sqrt the the sum **/
 
             double sum = 0.0;
-            for(i=0; i < weights.length; i++){
+            for(int i=0; i < weights.length; i++){
               double weightVal = weights[i];
               weightVal = Math.pow(weightVal, 2);
               sum += weightVal;
@@ -52,7 +52,12 @@ public class LogisticRegression {
         /** This does cross product of features and weights to create a value to plug into sigmoid **/
         /** to predict 1 or 0 (training data) **/
         private double probPred1(double[] x) {
-            return 0;
+            double sum = 0;
+            for(int i = 0; i < x.length; i++){
+                sum += x[i] * weights[i];
+            }
+            double prediction = sigmoid(sum);
+            return prediction;
         }
 
         /** TODO: The prediction function **/
