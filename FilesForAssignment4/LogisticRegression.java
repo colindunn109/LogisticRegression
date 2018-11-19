@@ -1,5 +1,6 @@
 //package cmps142_hw4;
 
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class LogisticRegression {
             /** sqrt the the sum **/
 
             double sum = 0.0;
-            for(i=0; i < weights.length; i++){
+            for(int i=0; i < weights.length; i++){
               double weightVal = weights[i];
               weightVal = Math.pow(weightVal, 2);
               sum += weightVal;
