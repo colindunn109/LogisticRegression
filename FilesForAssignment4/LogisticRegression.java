@@ -99,7 +99,7 @@ public class LogisticRegression {
 
         /** Train the Logistic Regression using Stochastic Gradient Ascent **/
         /** Also compute the log-likelihood of the data in this function **/
-        public void train(List<LRInstance> instances) {
+        public void train(List<LRInstance> instances){
             for (int n = 0; n < ITERATIONS; n++) {
                 double lik = 0.0; // Stores log-likelihood of the training data for this iteration
                 for (int i=0; i < instances.size(); i++) {
@@ -107,22 +107,31 @@ public class LogisticRegression {
                     double[] instanceVal = instances.get(i).x; //X1, X2, X3...
                     double predictX = probPred1(instanceVal); //P(Y = 1 | X, W)
                     int labelVal = instances.get(i).label;
+                    //System.out.println("predictX = "+ predictX);
+                    //System.out.println("instanceVal = "+ instanceVal);
+                    //System.out.println("labelVal = "+labelVal);
+
 
                     // learn the weight value based on prior weight at i
                     // Stochastic Gradient Ascent
                     // iterate through each feature?? of the instances
 
                     for(int j = 0; j < weights.length; j++){
-                      weights[j] += weights[j] + rate * (labelVal-predictX) * instanceVal[j];
-                      // System.out.println(weights[j]);
+                      double holder = 0.0;
+                      holder = (weights[j] + ((rate) * (labelVal-predictX) * instanceVal[j]));
+                      weights[j] = holder;
+                      //double test = weights[j];
+                      //System.out.println("Iteration = "+n+" Updated weight "+j+" at "+i+" = " +test);
+                      // System.out.println(weights[j])
                     }
-
                     // TODO: Compute the log-likelihood of the data here. Remember to take logs when necessary
-                    lik += labelVal * Math.log(probPred1(instanceVal)) + (1-labelVal) * Math.log(1- probPred1(instanceVal));
-
+                    double holder2 = 0.0;
+                    holder2 = labelVal * Math.log(probPred1(instanceVal)) + (1-labelVal) * Math.log(1- probPred1(instanceVal));
+                    lik = holder2;
 				}
                 System.out.println("iteration: " + n + " lik: " + lik);
             }
+
         }
 
         public static class LRInstance {
