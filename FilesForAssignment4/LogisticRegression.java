@@ -105,8 +105,7 @@ public class LogisticRegression {
                 for (int i=0; i < instances.size(); i++) {
                     // TODO: Train the model
                     double[] instanceVal = instances.get(i).x; //X1, X2, X3...
-                    double predictX = 0.0;
-                    predictX = probPred1(instanceVal); //P(Y = 1 | X, W)
+                    double predictX = probPred1(instanceVal); //P(Y = 1 | X, W)
                     int labelVal = instances.get(i).label;
 
                     // learn the weight value based on prior weight at i
@@ -114,10 +113,12 @@ public class LogisticRegression {
                     // iterate through each feature?? of the instances
 
                     for(int j = 0; j < weights.length; j++){
-                      weights[j] += (weights[j] + ((rate * instanceVal[j])*(labelVal - predictX)));
+                      weights[j] += weights[j] + rate * (labelVal-predictX) * instanceVal[j];
+                      // System.out.println(weights[j]);
                     }
 
                     // TODO: Compute the log-likelihood of the data here. Remember to take logs when necessary
+                    lik += labelVal * Math.log(probPred1(instanceVal)) + (1-labelVal) * Math.log(1- probPred1(instanceVal));
 
 				}
                 System.out.println("iteration: " + n + " lik: " + lik);
