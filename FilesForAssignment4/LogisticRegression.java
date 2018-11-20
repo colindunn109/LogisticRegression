@@ -73,18 +73,11 @@ public class LogisticRegression {
         /** This function should call probPred1() **/
         /** Takes testing data and predicts after the training data creates the weights. **/
         public int predict(double[] x) {
-<<<<<<< HEAD
             double result = 0;
             for(int i = 0; i < x.length; i++){
                 sum += probPredl(x[i]);
             }
             return result;
-=======
-
-
-
-            return 0;
->>>>>>> 7848b1202d5719f81e513db97c3da481c0695007
         }
 
         /** This function takes a test set as input, call the predict() to predict a label for it, and prints the accuracy, P, R, and F1 score of the positive class and negative class and the confusion matrix **/
