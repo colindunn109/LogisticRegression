@@ -114,10 +114,12 @@ public class LogisticRegression {
                     // iterate through each feature?? of the instances
 
                     for(int j = 0; j < weights.length; j++){
-                      weights[j] += (weights[j] + ((rate * instanceVal[j])*(labelVal - predictX)));
+                      weights[j] += weights[j] + rate * (labelVal-predictX) * instanceVal[j];
+                      System.out.println(weights[j]);
                     }
 
                     // TODO: Compute the log-likelihood of the data here. Remember to take logs when necessary
+                    lik += label * Math.log(classify(x)) + (1-label) * Math.log(1- classify(x));
 
 				}
                 System.out.println("iteration: " + n + " lik: " + lik);
