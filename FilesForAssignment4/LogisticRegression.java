@@ -40,7 +40,6 @@ public class LogisticRegression {
             double normVal = Math.sqrt(sum);
 
             return normVal;
-
         }
 
         /** TODO: Implement the sigmoid function **/
@@ -64,10 +63,8 @@ public class LogisticRegression {
            for(int i = 0; i < weights.length; i++){
              crossProdVal += weights[i] * x[i];
            }
-
            probPredVal = sigmoid(crossProdVal);
            return probPredVal;
-
         }
 
 
@@ -76,11 +73,18 @@ public class LogisticRegression {
         /** This function should call probPred1() **/
         /** Takes testing data and predicts after the training data creates the weights. **/
         public int predict(double[] x) {
+<<<<<<< HEAD
             double result = 0;
             for(int i = 0; i < x.length; i++){
                 sum += probPredl(x[i]);
             }
             return result;
+=======
+
+
+
+            return 0;
+>>>>>>> 7848b1202d5719f81e513db97c3da481c0695007
         }
 
         /** This function takes a test set as input, call the predict() to predict a label for it, and prints the accuracy, P, R, and F1 score of the positive class and negative class and the confusion matrix **/
@@ -108,8 +112,21 @@ public class LogisticRegression {
                 double lik = 0.0; // Stores log-likelihood of the training data for this iteration
                 for (int i=0; i < instances.size(); i++) {
                     // TODO: Train the model
+                    double[] instanceVal = instances.get(i).x; //X1, X2, X3...
+                    double predictX = 0.0;
+                    predictX = probPred1(instanceVal); //P(Y = 1 | X, W)
+                    int label = instances.get(i).label;
+
+                    // learn the weight value based on prior weight at i
+                    // Stochastic Gradient Ascent
+                    // iterate through each feature?? of the instances
+
+                    for(int j = 0; j < weights.length; j++){
+                      weights[j] += (weights[j] + ((rate * instanceVal[j])*(label - predictX)));
+                    }
 
                     // TODO: Compute the log-likelihood of the data here. Remember to take logs when necessary
+
 				}
                 System.out.println("iteration: " + n + " lik: " + lik);
             }
@@ -121,7 +138,6 @@ public class LogisticRegression {
 
             /** TODO: Constructor for initializing the Instance object **/
             public LRInstance(int label, double[] x) {
-
                this.label = label;
                this.x = x;
             }
