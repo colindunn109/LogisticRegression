@@ -73,10 +73,12 @@ public class LogisticRegression {
         /** This function should call probPred1() **/
         /** Takes testing data and predicts after the training data creates the weights. **/
         public int predict(double[] x) {
-            double result = 0;
+            double sum = 0;
+
             for(int i = 0; i < x.length; i++){
-                sum += probPredl(x[i]);
+                sum += probPred1(x[i]);
             }
+            int result = (int) sum;
             return result;
         }
 
@@ -88,10 +90,6 @@ public class LogisticRegression {
             int TP=0, TN=0, FP=0, FN=0; // TP = True Positives, TN = True Negatives, FP = False Positives, FN = False Negatives
 
             // TODO: write code here to compute the above mentioned variables
-            // Accuracy = #correct / #test instances
-            // Precision releveant records / total records retrieved
-            // Recall = relevant records / total records in database
-            // F = (2 * P * R) / (P + R)
 
             System.out.println("Accuracy="+acc);
             System.out.println("P, R, and F1 score of the positive class=" + p_pos + " " + r_pos + " " + f_pos);
@@ -112,14 +110,14 @@ public class LogisticRegression {
                     double[] instanceVal = instances.get(i).x; //X1, X2, X3...
                     double predictX = 0.0;
                     predictX = probPred1(instanceVal); //P(Y = 1 | X, W)
-                    int label = instances.get(i).label;
+                    int labelVal = instances.get(i).label;
 
                     // learn the weight value based on prior weight at i
                     // Stochastic Gradient Ascent
                     // iterate through each feature?? of the instances
 
                     for(int j = 0; j < weights.length; j++){
-                      weights[j] += (weights[j] + ((rate * instanceVal[j])*(label - predictX)));
+                      weights[j] += (weights[j] + ((rate * instanceVal[j])*(labelVal - predictX)));
                     }
 
                     // TODO: Compute the log-likelihood of the data here. Remember to take logs when necessary
