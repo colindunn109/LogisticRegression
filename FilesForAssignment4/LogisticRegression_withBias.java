@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // package cmps142_hw4;
+=======
+//package cmps142_hw4;
+>>>>>>> 4c367761af0e69e392d7d0146694d2ee3e7c0bd1
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -174,8 +178,8 @@ public class LogisticRegression_withBias {
 
                     // TODO: Compute the log-likelihood of the data here. Remember to take logs when necessary
                     double holder2 = 0.0;
-                    holder2 = labelVal * Math.log(probPred1(instanceVal)) + (1-labelVal) * Math.log(1- probPred1(instanceVal));
-                    lik = holder2;
+                    holder2 = labelVal * Math.log(probPred1(instanceVal)) + ((1-labelVal) * Math.log(1 - probPred1(instanceVal)));
+                    lik += holder2;
                 }
                 System.out.println("iteration: " + n + " lik: " + lik);
             }
