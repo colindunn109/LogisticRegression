@@ -88,6 +88,10 @@ public class LogisticRegression {
             int TP=0, TN=0, FP=0, FN=0; // TP = True Positives, TN = True Negatives, FP = False Positives, FN = False Negatives
 
             // TODO: write code here to compute the above mentioned variables
+            // Accuracy = #correct / #test instances
+            // Precision releveant records / total records retrieved
+            // Recall = relevant records / total records in database
+            // F = (2 * P * R) / (P + R)
 
             System.out.println("Accuracy="+acc);
             System.out.println("P, R, and F1 score of the positive class=" + p_pos + " " + r_pos + " " + f_pos);
