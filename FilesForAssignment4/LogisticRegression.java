@@ -73,9 +73,9 @@ public class LogisticRegression {
         /** This function should call probPred1() **/
         /** Takes testing data and predicts after the training data creates the weights. **/
         public int predict(double[] x) {
-            
+
             double sum = probPred1(x);
-            if(sum > 0.5) return 1;
+            if(sum >= 0.5) return 1;
             else return 0;
         }
 
