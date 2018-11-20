@@ -86,6 +86,63 @@ public class LogisticRegression {
             double p_neg = 0, r_neg = 0, f_neg = 0;
             int TP=0, TN=0, FP=0, FN=0; // TP = True Positives, TN = True Negatives, FP = False Positives, FN = False Negatives
 
+            for(int i = 0; i < testInstances.size(); i++){
+               double[] currInstance = testInstances.get(i).x;
+               int realLabel = testInstances.get(i).label; //label taken from the instance (actual)
+               //predict the label
+               int prediction = predict(currInstance); //predicted label based off weights
+
+               if(prediction == realLabel && realLabel == 1){
+                 TP++;    // this is a true positive
+               }
+               else if(prediction == realLabel && realLabel == 0){
+                 TN++;    // this is a true negative
+               }
+               else if(prediction != realLabel && realLabel == 1){
+                 FN++;    //this is a False Negative
+               }
+               else if(prediction != realLabel && realLabel == 0){
+                 FP++;    //this is a False Positive
+               }
+            }
+
+
+            System.out.println("TP = "+TP);
+            System.out.println("TN = "+TN);
+            System.out.println("FN = "+FN);
+            System.out.println("FP = "+FP);
+
+            // Accuracy
+            double num, den = 0.0;
+            num = TP + TN;
+            den = TP + TN + FP + FN;
+            acc = num/den;
+
+            //Precision positive
+            num = TP;
+            den = TP + FP;
+            p_pos = num/den;
+
+            //Precision Negative
+            num = TN;
+            den = TN + FN;
+            p_neg = num/den;
+
+            //Recall Positives
+            num = TP;
+            den = TP + FN;
+            r_pos = num/den;
+
+            //Recall Negative
+            num = TN;
+            den = TN + FP;
+            r_neg = num/den;
+
+            //F-Measure Positive
+            f_pos = (2 * p_pos * r_pos) / (p_pos + r_pos);
+            f_neg = (2 * p_neg  *r_neg) / (p_neg + r_neg);
+
+
             // TODO: write code here to compute the above mentioned variables
 
             System.out.println("Accuracy="+acc);
@@ -118,13 +175,16 @@ public class LogisticRegression {
 
                     for(int j = 0; j < weights.length; j++){
                       double holder = 0.0;
-                      holder = (weights[j] + ((rate) * (labelVal-predictX) * instanceVal[j]));
-                      weights[j] = holder;
+                      weights[j] = (weights[j] + ((rate) * (labelVal-predictX) * instanceVal[j]));
                       //double test = weights[j];
                       //System.out.println("Iteration = "+n+" Updated weight "+j+" at "+i+" = " +test);
                       // System.out.println(weights[j])
                     }
                     // TODO: Compute the log-likelihood of the data here. Remember to take logs when necessary
+
+
+
+
                     double holder2 = 0.0;
                     holder2 = labelVal * Math.log(probPred1(instanceVal)) + (1-labelVal) * Math.log(1- probPred1(instanceVal));
                     lik = holder2;
