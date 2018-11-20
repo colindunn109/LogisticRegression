@@ -207,13 +207,13 @@ public class LogisticRegression_withBias {
                     String[] columns = line.replace("\n", "").split(",");
 
                     // every line in the input file represents an instance-label pair
-                    int i = 1;
+                    int i = 0;
                     double[] data = new double[columns.length];
-                    for (i=1; i < columns.length; i++) {
+                    for (i=0; i < columns.length-1; i++) {
                         data[i] = Double.valueOf(columns[i]);
                     }
-                    data[0] = 1;
-                    int label = Integer.parseInt(columns[i-1]); // last column is the label
+                    data[columns.length-1] = 1;
+                    int label = Integer.parseInt(columns[i]); // last column is the label
                     LRInstance instance = new LRInstance(label, data); // create the instance
                     dataset.add(instance); // add instance to the corpus
                 }
