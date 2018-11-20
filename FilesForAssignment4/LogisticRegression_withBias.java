@@ -1,4 +1,4 @@
-package cmps142_hw4;
+// package cmps142_hw4;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -207,12 +207,13 @@ public class LogisticRegression_withBias {
                     String[] columns = line.replace("\n", "").split(",");
 
                     // every line in the input file represents an instance-label pair
-                    int i = 0;
-                    double[] data = new double[columns.length - 1];
-                    for (i=0; i < columns.length - 1; i++) {
+                    int i = 1;
+                    double[] data = new double[columns.length];
+                    for (i=1; i < columns.length; i++) {
                         data[i] = Double.valueOf(columns[i]);
                     }
-                    int label = Integer.parseInt(columns[i]); // last column is the label
+                    data[0] = 1;
+                    int label = Integer.parseInt(columns[i-1]); // last column is the label
                     LRInstance instance = new LRInstance(label, data); // create the instance
                     dataset.add(instance); // add instance to the corpus
                 }
