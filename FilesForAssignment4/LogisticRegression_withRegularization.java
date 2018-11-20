@@ -16,6 +16,9 @@ public class LogisticRegression_withRegularization {
         /** the weights to learn */
         private double[] weights;
 
+        /** the regularization coefficient */
+        private double lambda = 0.001;
+
         /** the number of iterations */
         private int ITERATIONS = 200;
 
